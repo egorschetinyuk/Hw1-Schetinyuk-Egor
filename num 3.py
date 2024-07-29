@@ -1,22 +1,24 @@
 while True:
     try:
+       
         with open('input1.txt', 'r') as perviy:
-            for lines in perviy:
-                itog1 = lines.strip()
+            itog1 = perviy.read().strip()  
         with open('input2.txt', 'r') as vtoroiy:
-            for lines in vtoroiy:
-                itog2 = lines.strip()
+            itog2 = vtoroiy.read().strip()
+
+        
         vmeste = itog1 + itog2
         sortirovochka = sorted(vmeste)
-        print(sortirovochka)
-        sortirovochka1 = ''
-        for i in sortirovochka:
-            if i != '"':
-                sortirovochka1 += i
-            else:
-                sortirovochka1 += " "
+
+      
+        sortirovochka1 = ''.join(i if i != '"' else ' ' for i in sortirovochka)
+
+     
         with open('output2.txt', 'w') as file:
-            file.write(str((sortirovochka1)))
-            break
+            file.write(sortirovochka1)
+
+        break  
     except FileNotFoundError:
-        print("Файл не найден")
+        print("Файл не найден. Проверьте наличие файлов и попробуйте снова.")
+        break 
+
